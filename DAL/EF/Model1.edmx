@@ -91,6 +91,16 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="IssueId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Token">
           <Key>
             <PropertyRef Name="Id" />
@@ -320,6 +330,7 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleToPermission" EntityType="Self.RoleToPermission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserToRole" EntityType="Self.UserToRole" Schema="dbo" store:Type="Tables" />
@@ -491,6 +502,16 @@
           <Property Name="IssueId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Issue" Relationship="Self.FK_Subscription_Issue" FromRole="Subscription" ToRole="Issue" />
           <NavigationProperty Name="User" Relationship="Self.FK_Subscription_User" FromRole="Subscription" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Token">
           <Key>
@@ -717,7 +738,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HelpDebugGovEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HelpDebugGovEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Files" EntityType="Self.File" />
           <EntitySet Name="Issues" EntityType="Self.Issue" />
@@ -728,6 +749,7 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="RoleToPermissions" EntityType="Self.RoleToPermission" />
           <EntitySet Name="Subscriptions" EntityType="Self.Subscription" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tokens" EntityType="Self.Token" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserToRoles" EntityType="Self.UserToRole" />
@@ -793,7 +815,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HelpDebugGovModelStoreContainer" CdmEntityContainer="HelpDebugGovEntities">
+        <EntityContainerMapping StorageEntityContainer="HelpDebugGovModelStoreContainer" CdmEntityContainer="HelpDebugGovEntities1">
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="HelpDebugGovModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -887,6 +909,17 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HelpDebugGovModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

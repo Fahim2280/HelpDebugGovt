@@ -13,10 +13,10 @@ namespace DAL.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HelpDebugGovEntities : DbContext
+    public partial class HelpDebugGovEntities1 : DbContext
     {
-        public HelpDebugGovEntities()
-            : base("name=HelpDebugGovEntities")
+        public HelpDebugGovEntities1()
+            : base("name=HelpDebugGovEntities1")
         {
         }
     
@@ -35,6 +35,7 @@ namespace DAL.EF
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleToPermission> RoleToPermissions { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserToRole> UserToRoles { get; set; }
