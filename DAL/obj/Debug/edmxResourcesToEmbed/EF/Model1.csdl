@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HelpDebugGovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssueId" Type="Int32" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Issue" Relationship="Self.FK_Comment_Issue" FromRole="Comment" ToRole="Issue" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Organizations" Relationship="Self.FK_Organization_File" FromRole="File" ToRole="Organization" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_File" FromRole="File" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Issue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Issue" FromRole="Issue" ToRole="Comment" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_Issue_Organization" FromRole="Issue" ToRole="Organization" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Issue_User" FromRole="Issue" ToRole="User" />
+    <NavigationProperty Name="LabelToIssues" Relationship="Self.FK_LabelToIssue_Issue" FromRole="Issue" ToRole="LabelToIssue" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_Subscription_Issue" FromRole="Issue" ToRole="Subscription" />
+  </EntityType>
+  <EntityType Name="Label">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LabelToIssues" Relationship="Self.FK_LabelToIssue_Label" FromRole="Label" ToRole="LabelToIssue" />
+  </EntityType>
+  <EntityType Name="LabelToIssue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LabelId" Type="Int32" Nullable="false" />
+    <Property Name="IssueId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Issue" Relationship="Self.FK_LabelToIssue_Issue" FromRole="LabelToIssue" ToRole="Issue" />
+    <NavigationProperty Name="Label" Relationship="Self.FK_LabelToIssue_Label" FromRole="LabelToIssue" ToRole="Label" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayImageId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="File" Relationship="Self.FK_Organization_File" FromRole="Organization" ToRole="File" />
+    <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_Organization" FromRole="Organization" ToRole="Issue" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RoleToPermissions" Relationship="Self.FK_RoleToPermission_Permission" FromRole="Permission" ToRole="RoleToPermission" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RoleToPermissions" Relationship="Self.FK_RoleToPermission_Role" FromRole="Role" ToRole="RoleToPermission" />
+    <NavigationProperty Name="UserToRoles" Relationship="Self.FK_UserToRole_Role" FromRole="Role" ToRole="UserToRole" />
+  </EntityType>
+  <EntityType Name="RoleToPermission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="PermissionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Permission" Relationship="Self.FK_RoleToPermission_Permission" FromRole="RoleToPermission" ToRole="Permission" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_RoleToPermission_Role" FromRole="RoleToPermission" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Subscription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IssueId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Issue" Relationship="Self.FK_Subscription_Issue" FromRole="Subscription" ToRole="Issue" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Subscription_User" FromRole="Subscription" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="AccessToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiredAt" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DispalayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayImageId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+    <NavigationProperty Name="File" Relationship="Self.FK_User_File" FromRole="User" ToRole="File" />
+    <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_User" FromRole="User" ToRole="Issue" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_Subscription_User" FromRole="User" ToRole="Subscription" />
+    <NavigationProperty Name="UserToRoles" Relationship="Self.FK_UserToRole_User" FromRole="User" ToRole="UserToRole" />
+  </EntityType>
+  <EntityType Name="UserToRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserToRole_Role" FromRole="UserToRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserToRole_User" FromRole="UserToRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Comment_Issue">
+    <End Role="Issue" Type="Self.Issue" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Issue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IssueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organization_File">
+    <End Role="File" Type="Self.File" Multiplicity="1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="DisplayImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_File">
+    <End Role="File" Type="Self.File" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DisplayImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabelToIssue_Issue">
+    <End Role="Issue" Type="Self.Issue" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LabelToIssue" Type="Self.LabelToIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Issue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LabelToIssue">
+        <PropertyRef Name="IssueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscription_Issue">
+    <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
+    <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Issue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="IssueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabelToIssue_Label">
+    <End Role="Label" Type="Self.Label" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LabelToIssue" Type="Self.LabelToIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Label">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LabelToIssue">
+        <PropertyRef Name="LabelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleToPermission_Permission">
+    <End Role="Permission" Type="Self.Permission" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RoleToPermission" Type="Self.RoleToPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleToPermission">
+        <PropertyRef Name="PermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleToPermission_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RoleToPermission" Type="Self.RoleToPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleToPermission">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserToRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserToRole" Type="Self.UserToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserToRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscription_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserToRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserToRole" Type="Self.UserToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserToRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HelpDebugGovEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Files" EntityType="Self.File" />
+    <EntitySet Name="Issues" EntityType="Self.Issue" />
+    <EntitySet Name="Labels" EntityType="Self.Label" />
+    <EntitySet Name="LabelToIssues" EntityType="Self.LabelToIssue" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="Permissions" EntityType="Self.Permission" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="RoleToPermissions" EntityType="Self.RoleToPermission" />
+    <EntitySet Name="Subscriptions" EntityType="Self.Subscription" />
+    <EntitySet Name="Tokens" EntityType="Self.Token" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserToRoles" EntityType="Self.UserToRole" />
+    <AssociationSet Name="FK_Comment_Issue" Association="Self.FK_Comment_Issue">
+      <End Role="Issue" EntitySet="Issues" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organization_File" Association="Self.FK_Organization_File">
+      <End Role="File" EntitySet="Files" />
+      <End Role="Organization" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_File" Association="Self.FK_User_File">
+      <End Role="File" EntitySet="Files" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Organization" Association="Self.FK_Issue_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_User" Association="Self.FK_Issue_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabelToIssue_Issue" Association="Self.FK_LabelToIssue_Issue">
+      <End Role="Issue" EntitySet="Issues" />
+      <End Role="LabelToIssue" EntitySet="LabelToIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscription_Issue" Association="Self.FK_Subscription_Issue">
+      <End Role="Issue" EntitySet="Issues" />
+      <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabelToIssue_Label" Association="Self.FK_LabelToIssue_Label">
+      <End Role="Label" EntitySet="Labels" />
+      <End Role="LabelToIssue" EntitySet="LabelToIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleToPermission_Permission" Association="Self.FK_RoleToPermission_Permission">
+      <End Role="Permission" EntitySet="Permissions" />
+      <End Role="RoleToPermission" EntitySet="RoleToPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleToPermission_Role" Association="Self.FK_RoleToPermission_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RoleToPermission" EntitySet="RoleToPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserToRole_Role" Association="Self.FK_UserToRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserToRole" EntitySet="UserToRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscription_User" Association="Self.FK_Subscription_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserToRole_User" Association="Self.FK_UserToRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserToRole" EntitySet="UserToRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
