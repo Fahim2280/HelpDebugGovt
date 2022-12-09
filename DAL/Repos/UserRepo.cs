@@ -13,17 +13,20 @@ namespace DAL.Repos
         public bool Add(User obj)
         {
             db.Users.Add(obj);
-            return db.SaveChanges() < 0;
+            return db.SaveChanges() > 0;
         }
 
-        public User Authenticate(int ID, string password)
+        public User Authenticate(string Email, string password)
         {
-            throw new NotImplementedException();
+           var obj = db.Users.FirstOrDefault(x=>x.Email.Equals(Email) && x.Password.Equals(password));
+            return obj;
         }
 
         public bool Delete(int id)
         {
-            
+            var dbDel = Get(id);
+            db.Users.Remove(dbDel);
+            return db.SaveChanges() > 0;
         }
 
         public List<User> Get()
