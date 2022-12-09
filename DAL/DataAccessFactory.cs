@@ -19,5 +19,35 @@ namespace DAL
         {
             return new UserRepo();
         }
+
+        public static IToken<Token, String, Token> TokenDataAccess()
+        {
+            return new TokenRepo();
+        }
+
+        public static IRepo<Organization, int> OrgDataAccess()
+        {
+            return new OrganizationRepo();
+        }
+
+        public static IRepo<Role, int> RoleDataAccess() 
+        {
+            return new RoleRepo();
+        }
+
+        public static IRepo<File, int> FileDataAccess()
+        {
+            return new FileRepos();
+        }
+
+        public static IRepo<Permission, int> PermissionDataAccess()
+        {
+            return new permissionRepo();
+        }
+
+        public static IRepo<Issue, int> IssueDataAccess() 
+        {
+            return new IssueRepos();
+        }
     }
 }
