@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class permissionRepo : Repo, IRepo<Permission, int>
+    internal class permissionRepo : Repo, IRepo<Permission, int, Permission>
     {
-        public bool Add(Permission obj)
+        public Permission Add(Permission obj)
         {
             db.Permissions.Add(obj);
-            return db.SaveChanges() > 0;
+            if (db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
         public bool Delete(int id)
@@ -31,14 +35,15 @@ namespace DAL.Repos
 
         public Permission Get(int id)
         {
-           return db.Permissions.Find(id);
+            return db.Permissions.Find(id);
         }
 
-        public bool Update(Permission obj)
+        public Permission Update(Permission obj)
         {
-            var dbUp = Get(obj.Id);
-            db.Entry(dbUp).CurrentValues.SetValues(obj);
-            return db.SaveChanges() > 0; 
+            var dbup = db.Permissions.Find(obj.Id);
+            db.Entry(dbup).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }

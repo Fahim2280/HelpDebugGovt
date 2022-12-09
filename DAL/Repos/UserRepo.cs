@@ -8,23 +8,28 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int>, IAuth
+    internal class UserRepo : Repo, IRepo<User, String, User>, IAuth
     {
-        public bool Add(User obj)
+        public User Add(User obj)
         {
-            db.Users.Add(obj);
-            return db.SaveChanges() > 0;
+           db.Users.Add(obj);
+            if(db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
-        public User Authenticate(string Email, string password)
+        public bool Authenticate(string Email, string pass)
         {
-           var obj = db.Users.FirstOrDefault(x=>x.Email.Equals(Email) && x.Password.Equals(password));
-            return obj;
+            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
+            if(data != null) return true;
+            return false;
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
-            var dbDel = Get(id);
+            var dbDel = Get(id); 
             db.Users.Remove(dbDel);
             return db.SaveChanges() > 0;
         }
@@ -34,16 +39,17 @@ namespace DAL.Repos
             return db.Users.ToList();
         }
 
-        public User Get(int id)
+        public User Get(string id)
         {
             return db.Users.Find(id);
         }
 
-        public bool Update(User obj)
+        public User Update(User obj)
         {
-            var upUser = Get(obj.Id);
-            db.Entry(upUser).CurrentValues.SetValues(obj);
-            return db.SaveChanges() > 0;
+            var dbUp = db.Users.Find(obj.Id);
+            db.Entry(dbUp).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }

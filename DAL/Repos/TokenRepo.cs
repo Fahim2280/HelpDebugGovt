@@ -41,7 +41,7 @@ namespace DAL.Repos
             db.Entry(tk).CurrentValues.SetValues(obj);
             if(db.SaveChanges() > 0)
             {
-                return tk;
+                return obj;
             }
             return null;
         }

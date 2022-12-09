@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class FileRepos : Repo, IRepo<File, int>
+    internal class FileRepos : Repo, IRepo<File, int, File>
     {
-        public bool Add(File obj)
+        public File Add(File obj)
         {
-            db.Files.Add(obj);  
-            return db.SaveChanges() > 0;
+            db.Files.Add(obj);
+            if (db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
         public bool Delete(int id)
@@ -33,11 +37,12 @@ namespace DAL.Repos
             return db.Files.Find(id);
         }
 
-        public bool Update(File obj)
+        public File Update(File obj)
         {
-            var dbUp = Get(obj.Id);
-            db.Entry(dbUp).CurrentValues.SetValues(obj);
-            return db.SaveChanges() > 0;
+            var dbup = db.Files.Find(obj.Id);
+            db.Entry(dbup).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }

@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class IssueRepos : Repo, IRepo<Issue, int>
+    internal class IssueRepos : Repo, IRepo<Issue, int, Issue>
     {
-        public bool Add(Issue obj)
+        public Issue Add(Issue obj)
         {
             db.Issues.Add(obj);
-            return db.SaveChanges() > 0;
+            if (db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
         public bool Delete(int id)
@@ -25,7 +29,7 @@ namespace DAL.Repos
 
         public List<Issue> Get()
         {
-           return db.Issues.ToList();
+            return db.Issues.ToList();
         }
 
         public Issue Get(int id)
@@ -33,11 +37,12 @@ namespace DAL.Repos
             return db.Issues.Find(id);
         }
 
-        public bool Update(Issue obj)
+        public Issue Update(Issue obj)
         {
-            var dbUp = Get(obj.Id);
-            db.Entry(dbUp).CurrentValues.SetValues(dbUp);
-            return db.SaveChanges() > 0;
+            var dbup = db.Issues.Find(obj.Id);
+            db.Entry(dbup).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }

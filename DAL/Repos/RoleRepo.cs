@@ -8,31 +8,41 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class RoleRepo : Repo, IRepo<Role, int>
+    internal class RoleRepo : Repo, IRepo<Role, int, Role>
     {
-        public bool Add(Role obj)
+        public Role Add(Role obj)
         {
-            throw new NotImplementedException();
+            db.Roles.Add(obj);
+            if(db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var dbDel = Get(id);
+            db.Roles.Remove(dbDel); 
+            return db.SaveChanges() > 0;
         }
 
         public List<Role> Get()
         {
-            throw new NotImplementedException();
+            return db.Roles.ToList();
         }
 
         public Role Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Roles.Find(id);
         }
 
-        public bool Update(Role obj)
+        public Role Update(Role obj)
         {
-            throw new NotImplementedException();
+            var dbup = db.Roles.Find(obj.Id);
+            db.Entry(dbup).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj; 
+            return null;
         }
     }
 }

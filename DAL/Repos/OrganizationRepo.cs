@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class OrganizationRepo : Repo, IRepo<Organization, int>
+    internal class OrganizationRepo : Repo, IRepo<Organization, int, Organization>
     {
-        public bool Add(Organization obj)
+        public Organization Add(Organization obj)
         {
             db.Organizations.Add(obj);
-            return db.SaveChanges() > 0;
+            if (db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
         public bool Delete(int id)
@@ -30,14 +34,15 @@ namespace DAL.Repos
 
         public Organization Get(int id)
         {
-            return db.Organizations.Find(id);
+            return db.Organizations.Find(id); 
         }
 
-        public bool Update(Organization obj)
+        public Organization Update(Organization obj)
         {
-            var dbUp = Get(obj.Id);
-            db.Entry(dbUp).CurrentValues.SetValues(obj);
-            return db.SaveChanges() > 0;
+            var dbup = db.Organizations.Find(obj.Id);
+            db.Entry(dbup).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }
