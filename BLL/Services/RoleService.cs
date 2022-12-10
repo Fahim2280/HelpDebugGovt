@@ -54,16 +54,12 @@ namespace BLL.Services
             return mapper.Map<RoleDTO>(result);
         }
 
-        public static RoleDTO Delete(RoleDTO id)
+        public static bool Delete(int id)
         {
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<RoleDTO, Role>();
-                cfg.CreateMap<Role, RoleDTO>();
-            });
-            var mapper = new Mapper(config);
-            var Roles = mapper.Map<Role>(id);
-            var result = DataAccessFactory.RoleDataAccess().Delete(Roles);
-            return mapper.Map<RoleDTO>(result);
+            var result = DataAccessFactory.RoleDataAccess().Delete(id);
+            return result;
         }
     }
 }
+
+
