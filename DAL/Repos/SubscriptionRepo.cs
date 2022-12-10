@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class SubscriptionRepo : Repo, IRepo<Subscription, String, Subscription>, IAuth
+    internal class SubscriptionRepo : Repo, IRepo<Subscription, int, Subscription>
     {
         public Subscription Add(Subscription obj)
         {
@@ -20,14 +20,7 @@ namespace DAL.Repos
             return null;
         }
 
-        public bool Authenticate(string Email, string pass)
-        {
-            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
-            if (data != null) return true;
-            return false;
-        }
-
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             var dbSub = Get(id);
             db.Subscriptions.Remove(dbSub);
@@ -39,7 +32,7 @@ namespace DAL.Repos
             return db.Subscriptions.ToList();
         }
 
-        public Subscription Get(string id)
+        public Subscription Get(int id)
         {
             return db.Subscriptions.Find(id);
         }

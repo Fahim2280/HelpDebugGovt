@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class RoleToPermissionRepos : Repo, IRepo<RoleToPermission, String, RoleToPermission>, IAuth
+    internal class RoleToPermissionRepos : Repo, IRepo<RoleToPermission, int, RoleToPermission>
     {
         public RoleToPermission Add(RoleToPermission obj)
         {
@@ -20,14 +20,7 @@ namespace DAL.Repos
             return null;
         }
 
-        public bool Authenticate(string Email, string pass)
-        {
-            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
-            if (data != null) return true;
-            return false;
-        }
-
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             var dbRtP= Get(id);
             db.RoleToPermissions.Remove(dbRtP);
@@ -39,7 +32,7 @@ namespace DAL.Repos
             return db.RoleToPermissions.ToList();
         }
 
-        public RoleToPermission Get(string id)
+        public RoleToPermission Get(int id)
         {
             return db.RoleToPermissions.Find(id);
         }

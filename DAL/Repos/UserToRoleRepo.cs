@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserToRoleRepos : Repo, IRepo<UserToRole, String, UserToRole>, IAuth
+    internal class UserToRoleRepos : Repo, IRepo<UserToRole, int, UserToRole>
     {
         public UserToRole Add(UserToRole obj)
         {
@@ -20,14 +20,7 @@ namespace DAL.Repos
             return null;
         }
 
-        public bool Authenticate(string Email, string pass)
-        {
-            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
-            if (data != null) return true;
-            return false;
-        }
-
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             var dbDel = Get(id);
             db.UserToRoles.Remove(dbDel);
@@ -39,7 +32,7 @@ namespace DAL.Repos
             return db.UserToRoles.ToList();
         }
 
-        public UserToRole Get(string id)
+        public UserToRole Get(int id)
         {
             return db.UserToRoles.Find(id);
         }

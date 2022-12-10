@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class CommentRepos : Repo, IRepo<Comment, String, Comment>, IAuth
+    internal class CommentRepos : Repo, IRepo<Comment, int, Comment>
     {
         public Comment Add(Comment obj)
         {
@@ -20,14 +20,7 @@ namespace DAL.Repos
             return null;
         }
 
-        public bool Authenticate(string Email, string pass)
-        {
-            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
-            if (data != null) return true;
-            return false;
-        }
-
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             var dbCom = Get(id);
             db.Comments.Remove(dbCom);
@@ -39,7 +32,7 @@ namespace DAL.Repos
             return db.Comments.ToList();
         }
 
-        public Comment Get(string id)
+        public Comment Get(int id)
         {
             return db.Comments.Find(id);
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class LabelToIssueRepo : Repo, IRepo<LabelToIssue, String, LabelToIssue>, IAuth
+    internal class LabelToIssueRepo : Repo, IRepo<LabelToIssue, int, LabelToIssue>
     {
         public LabelToIssue Add(LabelToIssue obj)
         {
@@ -20,14 +20,7 @@ namespace DAL.Repos
             return null;
         }
 
-        public bool Authenticate(string Email, string pass)
-        {
-            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
-            if (data != null) return true;
-            return false;
-        }
-
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             var dbLtS = Get(id);
             db.LabelToIssues.Remove(dbLtS);
@@ -39,7 +32,7 @@ namespace DAL.Repos
             return db.LabelToIssues.ToList();
         }
 
-        public LabelToIssue Get(string id)
+        public LabelToIssue Get(int id)
         {
             return db.LabelToIssues.Find(id);
         }

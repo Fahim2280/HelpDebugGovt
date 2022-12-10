@@ -48,7 +48,6 @@ namespace DAL
         }
 
         public static IRepo<Issue, int, Issue> IssueDataAccess() 
-n
         {
             return new IssueRepos();
         }
