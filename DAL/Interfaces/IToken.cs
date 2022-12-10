@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    internal class IToken
+    public interface IToken<CLASS, ID, RET>
     {
+        List<CLASS> Get();
+
+        CLASS Get(ID id);
+
+        RET Add(CLASS obj);
+
+        bool Delete(CLASS obj);
+
+        RET Update(CLASS obj);
     }
 }

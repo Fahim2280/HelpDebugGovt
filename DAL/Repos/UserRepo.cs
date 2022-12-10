@@ -8,46 +8,48 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int>, IAuth
+    internal class UserRepo : Repo, IRepo<User, String, User>, IAuth
     {
-        public bool Add(User obj)
+        public User Add(User obj)
         {
-            throw new NotImplementedException();
+            db.Users.Add(obj);
+            if (db.SaveChanges() > 0)
+            {
+                return obj;
+            }
+            return null;
         }
 
-        public User Authenticate(int ID, string password)
+        public bool Authenticate(string Email, string pass)
         {
-            throw new NotImplementedException();
+            var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
+            if (data != null) return true;
+            return false;
         }
 
-        public User Authenticate(string Email, string pass)
+        public bool Delete(string id)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
+            var dbDel = db.Users.Find(id);
+            db.Users.Remove(dbDel);
+            return db.SaveChanges() > 0;
         }
 
         public List<User> Get()
         {
-            throw new NotImplementedException();
+            return db.Users.ToList();
         }
 
-        public User Get(int id)
+        public User Get(string id)
         {
-            throw new NotImplementedException();
+            return db.Users.Find(id);
         }
 
-        public bool Update(User obj)
+        public User Update(User obj)
         {
-            throw new NotImplementedException();
-        }
-
-        User IAuth.Authenticate(string Email, string password)
-        {
-            throw new NotImplementedException();
+            var dbUp = db.Users.Find(obj.Id);
+            db.Entry(dbUp).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }

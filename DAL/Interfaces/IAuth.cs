@@ -9,6 +9,6 @@ namespace DAL.Interfaces
 {
     public interface IAuth
     {
-        User Authenticate(string Email, string pass);
+        bool Authenticate(string Email, string pass);
     }
 }
