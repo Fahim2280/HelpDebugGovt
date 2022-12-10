@@ -51,5 +51,36 @@ namespace DAL
         {
             return new IssueRepos();
         }
+
+        public static IRepo<Comment, int, Comment> CommentDataAccess()
+        {
+            return new CommentRepos();
+        }
+
+        public static IRepo<LabelToIssue, int, LabelToIssue> LabelToIssueDataAccess()
+        {
+            return new LabelToIssueRepo();
+        }
+
+        public static IRepo<Label, int, Label> LabelDataAccess()
+        {
+            return new LebelRepos();
+        }
+
+        public static IRepo<RoleToPermission, int, RoleToPermission> RoleToPermissionDataAccess()
+        {
+            return new RoleToPermissionRepos();
+        }
+
+        public static IRepo<Subscription, int, Subscription> SubscriptionDataAccess()
+        {
+            return new SubscriptionRepo();
+        }
+
+        public static IRepo<UserToRole, int, UserToRole> UserToRoleDataAccess()
+        {
+            return new UserToRoleRepos();
+        }
+
     }
 }
