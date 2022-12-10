@@ -96,10 +96,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar(max)" Nullable="false" />
           <Property Name="AccessToken" Type="varchar(max)" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
-          <Property Name="ExpiredAt" Type="datetime" Nullable="false" />
+          <Property Name="ExpiredAt" Type="datetime" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -497,10 +497,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AccessToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ExpiredAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiredAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -894,7 +894,7 @@
             <EntityTypeMapping TypeName="HelpDebugGovModel.Token">
               <MappingFragment StoreEntitySet="Token">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="ExpiredAt" ColumnName="ExpiredAt" />
