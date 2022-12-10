@@ -43,16 +43,15 @@ namespace BLL.Services
             return mapper.Map<FileDTO>(result);
         }
 
-        public static FileDTO Update(FileDTO id) 
+        public static FileDTO Update(FileDTO id)
         {
-            var config = new MapperConfiguration(cfg =>
-            {
+            var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<FileDTO, File>();
                 cfg.CreateMap<File, FileDTO>();
             });
             var mapper = new Mapper(config);
-            var File = mapper.Map<Role>(id);
-            var result = DataAccessFactory.FileDataAccess().Update(File);
+            var Files = mapper.Map<File>(id);
+            var result = DataAccessFactory.FileDataAccess().Update(Files);
             return mapper.Map<FileDTO>(result);
         }
 
