@@ -13,7 +13,9 @@ namespace DAL.Repos
         public Token Add(Token obj)
         {
             db.Tokens.Add(obj);
-            if (db.SaveChanges() > 0)
+
+            if(db.SaveChanges() > 0)
+
             {
                 return obj;
             }
@@ -39,7 +41,9 @@ namespace DAL.Repos
         {
             var tk = Get(obj.AccessToken);
             db.Entry(tk).CurrentValues.SetValues(obj);
-            if (db.SaveChanges() > 0)
+
+            if(db.SaveChanges() > 0)
+
             {
                 return obj;
             }

@@ -34,7 +34,9 @@ namespace DAL.Repos
 
         public Organization Get(int id)
         {
-            return db.Organizations.Find(id);
+
+            return db.Organizations.Find(id); 
+
         }
 
         public Organization Update(Organization obj)

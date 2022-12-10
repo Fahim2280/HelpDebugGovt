@@ -30,7 +30,9 @@ namespace DAL
             return new OrganizationRepo();
         }
 
-        public static IRepo<Role, int, Role> RoleDataAccess()
+
+        public static IRepo<Role, int, Role> RoleDataAccess() 
+
         {
             return new RoleRepo();
         }
@@ -45,7 +47,8 @@ namespace DAL
             return new permissionRepo();
         }
 
-        public static IRepo<Issue, int, Issue> IssueDataAccess()
+        public static IRepo<Issue, int, Issue> IssueDataAccess() 
+n
         {
             return new IssueRepos();
         }

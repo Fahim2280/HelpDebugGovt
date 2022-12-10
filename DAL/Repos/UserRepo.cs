@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int, User>, IAuth
+
+    internal class UserRepo : Repo, IRepo<User, String, User>, IAuth
     {
         public User Add(User obj)
         {
-            db.Users.Add(obj);
-            if (db.SaveChanges() > 0)
+           db.Users.Add(obj);
+            if(db.SaveChanges() > 0)
+
             {
                 return obj;
             }
@@ -23,13 +25,15 @@ namespace DAL.Repos
         public bool Authenticate(string Email, string pass)
         {
             var data = db.Users.FirstOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(pass));
-            if (data != null) return true;
+
+            if(data != null) return true;
             return false;
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
-            var dbDel = db.Users.Find(id);
+            var dbDel = db.Users.Find(id); 
+
             db.Users.Remove(dbDel);
             return db.SaveChanges() > 0;
         }
@@ -39,7 +43,7 @@ namespace DAL.Repos
             return db.Users.ToList();
         }
 
-        public User Get(int id)
+        public User Get(string id)
         {
             return db.Users.Find(id);
         }

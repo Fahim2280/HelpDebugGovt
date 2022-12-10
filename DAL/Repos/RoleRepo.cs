@@ -13,7 +13,9 @@ namespace DAL.Repos
         public Role Add(Role obj)
         {
             db.Roles.Add(obj);
-            if (db.SaveChanges() > 0)
+
+            if(db.SaveChanges() > 0)
+
             {
                 return obj;
             }
@@ -23,7 +25,9 @@ namespace DAL.Repos
         public bool Delete(int id)
         {
             var dbDel = db.Roles.Find(id);
-            db.Roles.Remove(dbDel);
+
+            db.Roles.Remove(dbDel); 
+
             return db.SaveChanges() > 0;
         }
 
@@ -41,7 +45,9 @@ namespace DAL.Repos
         {
             var dbup = db.Roles.Find(obj.Id);
             db.Entry(dbup).CurrentValues.SetValues(obj);
-            if (db.SaveChanges() > 0) return obj;
+
+            if (db.SaveChanges() > 0) return obj; 
+
             return null;
         }
     }
