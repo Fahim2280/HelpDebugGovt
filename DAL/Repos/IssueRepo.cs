@@ -22,7 +22,7 @@ namespace DAL.Repos
 
         public bool Delete(int id)
         {
-            var dbDel = Get(id);
+            var dbDel = db.Issues.Find(id);
             db.Issues.Remove(dbDel);
             return db.SaveChanges() > 0;
         }
