@@ -4,18 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BAL.DTO
+namespace BLL.DTO
 {
-    public class UserDTO
+    public class OrganizationDTO
     {
         public int Id { get; set; }
 
-        public string DispalayName { get; set; }
-
-        public string Password { get; set; }
+        public string DisplayName { get; set; }
 
         public int DisplayImageId { get; set; }
-
-        public string Email { get; set; }
     }
 }
