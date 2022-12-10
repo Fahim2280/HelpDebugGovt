@@ -10,12 +10,12 @@ namespace BAL.DTO
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public string Username { get; set; }
 
         public string AccessToken { get; set; }
 
         public System.DateTime CreatedAt { get; set; }
 
-        public System.DateTime ExpiredAt { get; set; }
+        public Nullable<System.DateTime> ExpiredAt { get; set; }
     }
 }

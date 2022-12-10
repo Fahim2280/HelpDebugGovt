@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BAL.DTO
+namespace BLL.DTO
 {
     public class UserDTO
     {

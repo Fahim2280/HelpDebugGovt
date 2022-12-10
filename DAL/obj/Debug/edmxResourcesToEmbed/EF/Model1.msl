@@ -101,7 +101,7 @@
       <EntityTypeMapping TypeName="HelpDebugGovModel.Token">
         <MappingFragment StoreEntitySet="Token">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="ExpiredAt" ColumnName="ExpiredAt" />
