@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class SubscriptionRepo : Repo, IRepo<Subscription, String, Subscription'>, IAuth
+    internal class SubscriptionRepo : Repo, IRepo<Subscription, String, Subscription>, IAuth
     {
         public Subscription Add(Subscription obj)
         {
