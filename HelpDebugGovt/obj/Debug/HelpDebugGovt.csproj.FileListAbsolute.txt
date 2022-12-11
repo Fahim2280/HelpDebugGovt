@@ -167,3 +167,7 @@ C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\obj\Debug\H
 C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\obj\Debug\HelpDebugGovt.csproj.CopyComplete
 C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\obj\Debug\HelpDebugGovt.dll
 C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\obj\Debug\HelpDebugGovt.pdb
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\bin\System.Net.Http.Formatting.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\bin\System.Web.Http.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\bin\System.Net.Http.Formatting.xml
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\HelpDebugGovt\bin\System.Web.Http.xml
