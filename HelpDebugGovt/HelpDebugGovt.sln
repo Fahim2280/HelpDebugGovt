@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "..\BLL\BLL.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\DAL\DAL.csproj", "{1655C5AE-4944-4747-BDD5-3FA51283EB55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDebugGovtAPI", "..\HelpDebugGovtAPI\HelpDebugGovtAPI.csproj", "{FDFA1C5F-E9E1-488E-80E4-552002C3838A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1655C5AE-4944-4747-BDD5-3FA51283EB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1655C5AE-4944-4747-BDD5-3FA51283EB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1655C5AE-4944-4747-BDD5-3FA51283EB55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDFA1C5F-E9E1-488E-80E4-552002C3838A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFA1C5F-E9E1-488E-80E4-552002C3838A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFA1C5F-E9E1-488E-80E4-552002C3838A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFA1C5F-E9E1-488E-80E4-552002C3838A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

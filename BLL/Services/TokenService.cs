@@ -18,7 +18,7 @@ namespace BLL.Services
             if (rs)
             {
                 var tk = new Token();
-                tk.Username = uname.ToString();
+                tk.Username = uname;
                 tk.CreatedAt = DateTime.Now;
                 tk.ExpiredAt = null;
                 tk.AccessToken = Guid.NewGuid().ToString();
