@@ -27,7 +27,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Role")]
+        [Route("api/Roles")]
         [HttpPost]
         public HttpResponseMessage Add(RoleDTO obj)
         {
@@ -35,7 +35,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Role/update")]
+        [Route("api/Roles/update")]
         [HttpPost]
         public HttpResponseMessage Update(RoleDTO obj)
         {

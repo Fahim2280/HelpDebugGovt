@@ -27,7 +27,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Issue/add")]
+        [Route("api/Issues/add")]
         [HttpPost]
         public HttpResponseMessage Add(IssueDTO obj)
         {
@@ -35,7 +35,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Issue/update")]
+        [Route("api/Issues/update")]
         [HttpPost]
         public HttpResponseMessage Update(IssueDTO obj)
         {
@@ -43,7 +43,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Issue/delete")]
+        [Route("api/Issues/delete")]
         [HttpGet]
         public HttpResponseMessage Delete(int id)
         {

@@ -27,7 +27,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Organization/add")]
+        [Route("api/Organizations/add")]
         [HttpPost]
         public HttpResponseMessage Add(OrganizationDTO obj)
         {
@@ -35,7 +35,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Organization/update")]
+        [Route("api/Organizations/update")]
         [HttpPost]
         public HttpResponseMessage Update(OrganizationDTO obj)
         {

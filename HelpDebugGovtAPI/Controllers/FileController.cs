@@ -27,7 +27,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/File/add")]
+        [Route("api/Files/add")]
         [HttpPost]
         public HttpResponseMessage Add(FileDTO obj)
         {
@@ -35,7 +35,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/File/update")]
+        [Route("api/Files/update")]
         [HttpPost]
         public HttpResponseMessage Update(FileDTO obj)
         {
@@ -43,7 +43,7 @@ namespace HelpDebugGovtAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/File/delete")]
+        [Route("api/Files/delete")]
         [HttpGet]
         public HttpResponseMessage Delete(int id)
         {
