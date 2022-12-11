@@ -10,3 +10,17 @@ C:\Users\Fahim\OneDrive\Documents\GitHub\New folder\BLL\obj\Debug\BLL.csproj.Cor
 C:\Users\Fahim\OneDrive\Documents\GitHub\New folder\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\Users\Fahim\OneDrive\Documents\GitHub\New folder\BLL\obj\Debug\BLL.dll
 C:\Users\Fahim\OneDrive\Documents\GitHub\New folder\BLL\obj\Debug\BLL.pdb
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\BLL.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\BLL.pdb
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\AutoMapper.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\DAL.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\EntityFramework.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\DAL.pdb
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\DAL.dll.config
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\AutoMapper.xml
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\bin\Debug\EntityFramework.xml
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\obj\Debug\BLL.dll
+C:\Users\Fahim\OneDrive\Documents\GitHub\HelpDebugGovt\BLL\obj\Debug\BLL.pdb
